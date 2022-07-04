@@ -1,0 +1,110 @@
+------------------------------------------------------------------------------------------------------------------
+-- Consola de Windows (CMD) INICIAR COMO ADMINISTRADOR.
+------------------------------------------------------------------------------------------------------------------
+
+SET ORACLE_SID=BDPIZZA
+SET ORACLE_BASE=C:\Users\karroyo\Desktop
+SET ORACLE_HOME=C:\Users\karroyo\Desktop\oracle
+MD %ORACLE_BASE%\admin\%ORACLE_SID%\adump
+MD %ORACLE_BASE%\admin\%ORACLE_SID%\pfile
+MD C:\Databases\Oracle19c\oradata\%ORACLE_SID%\DATAFILES
+MD C:\Databases\Oracle19c\oradata\%ORACLE_SID%\REDOLOGS
+MD C:\Databases\Oracle19c\recovery_area\%ORACLE_SID%
+MD C:\Databases\ORACLE19C\oradata\%ORACLE_SID%\PDBSEED\DATAFILES
+
+dir %ORACLE_BASE%\admin\orcl\pfile\ /b
+
+COPY %ORACLE_BASE%\admin\orcl\pfile\init.ora.* %ORACLE_BASE%\admin\%ORACLE_SID%\pfile\init%ORACLE_SID%.ora
+
+------------------------------------------------------------------------------------------------------------------
+-- Haciendo uso del Notepad.
+------------------------------------------------------------------------------------------------------------------
+
+Editar el archivo:
+
+notepad %ORACLE_BASE%\admin\%ORACLE_SID%\pfile\init%ORACLE_SID%.ora
+
+Dentro del archivo init%ORACLE_SID%.ora realizar los siguientes cambios con el nombre de la nueva base de datos:
+
+	C:\Databases\Oracle19c\oradata\BDPIZZA\control01.ctl por C:\Databases\Oracle19c\oradata\BDPIZZA\control01.ctl
+        C:\Databases\Oracle19c\recovery_area\ORCL\control02.ctl por C:\Databases\Oracle19c\recovery_area\BDPIZZA\control02.ctl
+        db_recovery_file_dest="C:\Databases\Oracle19c\recovery_area" por db_recovery_file_dest="C:\Databases\Oracle19c\recovery_area\BDPIZZA"
+	db_recovery_file_dest_size=12732m
+        db_name="orcl" por db_name="BDPIZZA"
+        sga_target=3072m por sga_target=2048m
+        local_listener=LISTENER_orcl por local_listener=LISTENER_BDPIZZA
+        audit_file_dest="C:\Software\Oracle19c\admin\orcl\adump" por audit_file_dest="C:\Users\karroyo\Desktop\admin\BDPIZZA\adump"
+
+------------------------------------------------------------------------------------------------------------------
+-- Consola de Windows (CMD)
+------------------------------------------------------------------------------------------------------------------
+
+oradim -new -sid %ORACLE_SID% -startmode manual -pfile %ORACLE_BASE%\admin\%ORACLE_SID%\pfile\init%ORACLE_SID%.ora
+
+sqlplus /nolog
+
+------------------------------------------------------------------------------------------------------------------
+-- Dentro del SQLPLUS
+------------------------------------------------------------------------------------------------------------------
+
+CONNECT SYS AS SYSDBA
+
+CREATE SPFILE FROM pfile='C:\Users\karroyo\Desktop\admin\BDPIZZA\pfile\initBDPIZZA.ora';
+
+STARTUP NOMOUNT;
+
+CREATE DATABASE BDPIZZA
+   USER SYS IDENTIFIED BY Oracle01
+   USER SYSTEM IDENTIFIED BY Oracle01
+   LOGFILE GROUP 1 ('C:\Databases\Oracle19c\oradata\BDPIZZA\REDOLOGS\redo01a.log','C:\Databases\Oracle19c\oradata\BDPIZZA\REDOLOGS\redo01b.log') SIZE 100M BLOCKSIZE 512,
+           GROUP 2 ('C:\Databases\Oracle19c\oradata\BDPIZZA\REDOLOGS\redo02a.log','C:\Databases\Oracle19c\oradata\BDPIZZA\REDOLOGS\redo02b.log') SIZE 100M BLOCKSIZE 512,
+           GROUP 3 ('C:\Databases\Oracle19c\oradata\BDPIZZA\REDOLOGS\redo03a.log','C:\Databases\Oracle19c\oradata\BDPIZZA\REDOLOGS\redo03b.log') SIZE 100M BLOCKSIZE 512
+   DATAFILE 'C:\Databases\Oracle19c\oradata\BDPIZZA\DATAFILES\SYSTEM01.DBF' SIZE 50M AUTOEXTEND ON MAXSIZE UNLIMITED
+   SYSAUX DATAFILE 'C:\Databases\Oracle19c\oradata\BDPIZZA\DATAFILES\SYSAUX01.DBF' SIZE 325M AUTOEXTEND ON MAXSIZE UNLIMITED
+   DEFAULT TEMPORARY TABLESPACE temp TEMPFILE 'C:\Databases\Oracle19c\oradata\BDPIZZA\DATAFILES\TBS_TEMP.DBF' SIZE 50 M AUTOEXTEND ON MAXSIZE UNLIMITED
+   DEFAULT TABLESPACE users DATAFILE 'C:\Databases\Oracle19c\oradata\BDPIZZA\DATAFILES\TBS_USERS01.DBF' SIZE 500M AUTOEXTEND ON MAXSIZE UNLIMITED
+   UNDO TABLESPACE UNDOTBS1 DATAFILE 'C:\Databases\Oracle19c\oradata\BDPIZZA\DATAFILES\TBS_UNDO.DBF' SIZE 50 M AUTOEXTEND ON MAXSIZE UNLIMITED
+   MAXLOGFILES 32
+   MAXLOGMEMBERS 5
+   MAXLOGHISTORY 1
+   MAXDATAFILES 100
+   EXTENT MANAGEMENT LOCAL
+   ARCHIVELOG
+   CHARACTER SET WE8ISO8859P1
+   ENABLE PLUGGABLE DATABASE SEED FILE_NAME_CONVERT = ('C:\Databases\Oracle19c\oradata\BDPIZZA', 'C:\Databases\Oracle19c\oradata\BDPIZZA\pdbseed');
+
+set linesize 1000
+
+select * from v$instance;
+
+@?/rdbms/admin/catalog.sql
+@?/rdbms/admin/catproc.sql
+@?/rdbms/admin/utlrp.sql
+
+CONNECT SYSTEM
+
+@?/sqlplus/admin/pupbld.sql
+
+EXIT
+
+------------------------------------------------------------------------------------------------------------------
+-- Consola de Windows (CMD) CUANDO TODO ESTÁ LISTO SE PASA A MODO AUTOMÁTICO.
+------------------------------------------------------------------------------------------------------------------
+
+ORADIM -EDIT -SID BDPIZZA -STARTMODE AUTO
+
+------------------------------------------------------------------------------------------------------------------
+-- Si se requiere eliminar la base de datos creada.
+------------------------------------------------------------------------------------------------------------------
+-- Eliminar la instancia.
+SET ORACLE_SID=BDPIZZA
+SET ORACLE_BASE=C:\Users\karroyo\Desktop
+SET ORACLE_HOME=C:\Users\karroyo\Desktop\oracle
+oradim -DELETE -SID %ORACLE_SID%
+rd %ORACLE_BASE%\admin\%ORACLE_SID% /s/q
+rd C:\Databases\Oracle19c\oradata\%ORACLE_SID% /s/q
+rd C:\Databases\Oracle19c\recovery_area\%ORACLE_SID% /s/q
+rd C:\Users\karroyo\Desktop\diag\rdbms\%ORACLE_SID% /s/q
+rd C:\Users\karroyo\Desktop\audit\%ORACLE_SID% /s/q
+del C:\Users\karroyo\Desktop\oracle\database\*%ORACLE_SID%*.*
+del C:\Users\karroyo\Desktop\oracle\rdbms\trace\*%ORACLE_SID%*.*
