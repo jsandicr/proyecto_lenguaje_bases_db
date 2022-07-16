@@ -19,9 +19,15 @@
             </video>
         </div>
         <div class="first_container">
-            <?php
-                 require_once('Included/./PHP/header.php')
-            ?>
+        <navbar>
+            <ul>
+                <li>Inicio</li>
+                <li>Acerca de nosotros</li>
+                <li>Menu</li>
+                <li>Ordenar express</li>
+                <li>Iniciar Sesion</li>
+            </ul>
+        </navbar>
             <h1>Garage Pizza</h1>
         </div>
         <div class="second-container">
