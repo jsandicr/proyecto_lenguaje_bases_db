@@ -20,7 +20,7 @@
         </div>
         <div class="first_container">
             <?php
-                 require_once('Included/PHP/header.php')
+                 require_once('Included/./PHP/header.php')
             ?>
             <h1>Garage Pizza</h1>
         </div>
