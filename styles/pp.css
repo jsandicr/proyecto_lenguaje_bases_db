@@ -1,0 +1,84 @@
+:root{
+    --Dark-Brown: #2D2424;
+    --Brown: #5C3D2E;
+    --Orange: #B85C38;
+    --Light-brown: #E0C097;
+}
+body{
+    background-image: url("imagen.jpg");
+    background-size: 100%;
+    color: var(--Light-brown);
+}
+
+table {
+    font-size: 14px;
+    margin: 45px;
+    width: 480px;
+    text-align: left;
+    border-collapse: collapse;
+}
+
+th {
+    font-size: 13px;
+    font-weight: normal;
+    padding: 8px;
+    background: var(--Orange);
+    border-top: 4px solid var(--Orange);
+    border-bottom: 1px solid #fff;
+    color: rgb(194, 169, 28);
+}
+
+td {
+    padding: 8px;
+    background: var(--Light-brown);
+    border-bottom: 1px solid #fff;
+    color: rgb(33, 11, 39);
+    border-top: 1px solid transparent;
+}
+
+tr:hover td {
+    background: var(--Brown);
+    color: rgb(178, 178, 196);
+}
+.row{
+
+    color: var(--Dark-Brownbrown);
+}
+navbar{
+    width: 100%;
+    display: flex;
+    justify-content:center;
+    position: fixed;
+    top: 0;
+    right: 0;
+}
+
+navbar ul{
+    display: flex;
+    width: 50%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 15px;
+    justify-content: space-around;
+    align-items: center;
+    list-style: none;
+    margin-top: 35px;
+    padding: 0 30px;
+    border-radius: 10px;
+}
+
+
+navbar ul li {
+    margin: 10px;
+    color: var(--Light-brown);
+}
+
+navbar a{
+    display:block
+}
+
+navbar ul li:hover{
+    color: var(--Orange);
+    border-bottom: 1px solid var(--Orange);
+    cursor: pointer;
+}

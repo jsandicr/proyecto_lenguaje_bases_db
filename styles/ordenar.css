@@ -1,0 +1,65 @@
+:root{
+    --Dark-Brown: #2D2424;
+    --Brown: #5C3D2E;
+    --Orange: #B85C38;
+    --Light-brown: #E0C097;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1{
+    margin-top: 80px;
+}
+
+.title{
+    color: var(--Brown);
+}
+
+.title_sucursal{
+    margin-top: 30px;
+    width: 100vw;
+    text-align: center;
+}
+
+.title_sucursal p{
+    font-size: 20px;
+    color: var(--Brown);
+}
+
+.menu_elegir{
+    display: flex;
+    flex-direction: column;
+    width: 30vw;
+    margin: 0 10vw;
+}
+
+.opcion{
+    margin: 30px 0;
+    padding: 5px;
+    border: 1px solid var(--Brown);
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+    transition: 0.5s;
+}
+
+.opcion:hover{
+    background-color: var(--Brown);
+    cursor: pointer;
+}
+
+.opcion:hover .informacion p{
+    color: var(--Light-brown);
+}
+
+.opcion .informacion p{
+    color: var(--Brown);
+}
+
+.opcion img{
+    width: 100px;
+}

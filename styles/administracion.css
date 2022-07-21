@@ -1,0 +1,56 @@
+:root{
+    --Dark-Brown: #2D2424;
+    --Brown: #5C3D2E;
+    --Orange: #B85C38;
+    --Light-brown: #E0C097;
+}
+
+.row{
+    margin-top: 50px;
+}
+
+.admin-row{
+    background-color: var(--Light-brown);
+    height: 100vh;
+}
+
+.admin{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    color: var(--Brown);
+}
+
+.admin h2, table tr td{
+    color: var(--Brown);
+}
+
+.table{
+    width: 80vw;
+}
+
+i{
+    color:white;
+}
+
+.usuarios{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.home .row{
+    display: flex;
+}
+
+.home .row .col-lg-4{
+    width: 400px;
+    margin: 0 10px;
+    padding-bottom: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 5px;
+}

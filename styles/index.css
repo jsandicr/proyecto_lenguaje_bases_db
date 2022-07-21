@@ -14,10 +14,10 @@
 
 body{
     overflow-x: hidden;
-    background-color: gray;
+    background-color: var(--Light-brown);
 }
 
-.first_container{
+.home{
     position: absolute;
     top: 0;
     background-color: rgba(0, 0, 0, 0.5);
@@ -46,40 +46,6 @@ h1{
     text-align: center;
     font-style: italic;
     color: var(--Light-brown);
-}
-
-navbar{
-    width: 100%;
-    display: flex;
-    justify-content:center;
-    position: fixed;
-    top: 0;
-    right: 0;
-}
-
-navbar ul{
-    display: flex;
-    width: 50%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    padding: 15px;
-    justify-content: space-around;
-    align-items: center;
-    list-style: none;
-    margin-top: 35px;
-    padding: 0 30px;
-    border-radius: 10px;
-}
-
-navbar ul li {
-    margin: 10px;
-    color: var(--Light-brown);
-}
-
-navbar ul li:hover{
-    color: var(--Orange);
-    border-bottom: 1px solid var(--Orange);
-    cursor: pointer;
 }
 
 .menu{
@@ -120,11 +86,10 @@ navbar ul li:hover{
 }
 
 .menu_pizzas{
-    margin: 50px 0;
     display: grid;
 }
 
-.second-container{
+.about{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -133,50 +98,44 @@ navbar ul li:hover{
     background-color:var(--Orange)
 }
 
-.second-container h2{
+.about h2{
     color: var(--Light-brown);
     font-style: italic;
     text-align: center;
     padding-top: 100px;
 }
 
-.second-container p{
+.about p{
     color: var(--Light-brown);
     height: 40%;
     margin-top: 10px;
     text-align: center;
 }
 
-.third-container{
+.menu{
     height: 120vh;
     background-color: var(--Light-brown);
 }
 
-.fourth-container{
+.ordenar{
     height: 100vh;
+    background: var(--Orange);
     padding-top: 100px;
-    background-color: var(--Orange);
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.fourth-container h2{
-    text-align: center;
-    color: var(--Light-brown);
-    font-style: italic;
-}
-
-.fourth-container p, .fifth-container p{
+.ordenar p{
     margin: 20px 0;
     text-align: center;
 }
 
-.fourth-container .sucursales, .fifth-container .sucursales{
+.ordenar .sucursales{
     display: flex;
 }
 
-.fourth-container .sucursal, .fifth-container .sucursal{
+.ordenar .sucursal{
     margin: 0 20px;
     background-color: rgba(0, 0, 0, 0.1);
     border: none;
@@ -186,19 +145,25 @@ navbar ul li:hover{
     flex-direction: column;
 }
 
-.fourth-container .sucursal p, .fifth-container .sucursal p{
+.ordenar .sucursal:hover{
+    transition: 0.5s;
+    border: 1px solid var(--Brown);
+}
+
+.ordenar .sucursal:hover p{
+    transition: 0.5s;
+    font-size: 18px;
+}
+
+.ordenar .sucursal p{
     text-align: center;
     width: 100%;
 }
 
-.fourth-container .sucursal .ubicacion, .fifth-container .sucursal .ubicacion{
+.ordenar .sucursal .ubicacion{
     text-align:right;
     height:300px;
     width:300px;
-}
-
-.fourth-container p{
-    color: var(--Light-brown);
 }
 
 .gmap_canvas{
@@ -208,21 +173,12 @@ navbar ul li:hover{
     width:300px;
 }
 
-.fifth-container{
-    height: 100vh;
-    background: var(--Light-brown);
-    padding-top: 100px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.fifth-container h2{
+.ordenar h2{
     text-align: center;
-    color: var(--Brown);
+    color: var(--Light-brown);
     font-style: italic;
 }
 
-.fifth-container p{
-    color: var(--Brown);
+.ordenar p{
+    color: var(--Light-brown);
 }

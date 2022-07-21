@@ -1,0 +1,30 @@
+:root{
+    --Dark-Brown: #2D2424;
+    --Brown: #5C3D2E;
+    --Orange: #B85C38;
+    --Light-brown: #E0C097;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    color: var(--Light-brown);
+}
+
+.main_container{
+    /*overflow-y: hidden;*/
+    padding: 5px;
+    background-color: var(--Orange);
+}
+
+.home{
+    width:100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 100px;
+}
+
+.agregar{
+    margin: 20px 0;
+}
