@@ -23,9 +23,9 @@
         $_SESSION['rol']=$row['TBR_ID'];
         $f=$_SESSION['rol'];
 
-        if($row['TBR_ID']==1){
+        if($row['TBR_ID']==22){
           header('location: ordenar.php');
-        }else if($row['TBR_ID']==22){
+        }else if($row['TBR_ID']==1){
           header('location: administracion.php');
         }
         
@@ -67,7 +67,7 @@
             <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
             <title>Citas</title>
             <link rel="stylesheet" type="text/css" href="../librerias/bootstrap/css/bootstrap.css">
-            <link rel="stylesheet" type="text/css" href="..7librerias/alertifyjs/css/alertify.css">
+            <link rel="stylesheet" type="text/css" href="../librerias/alertifyjs/css/alertify.css">
             <link rel="stylesheet" type="text/css" href="../librerias/alertifyjs/css/themes/default.css">
             <link rel="stylesheet" type="text/css" href="../librerias/select2/css/select2.css">
           
