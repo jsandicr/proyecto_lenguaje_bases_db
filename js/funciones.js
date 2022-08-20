@@ -10,11 +10,11 @@ function eliminarDatos(id){
 
 		$.ajax({
 			type:"POST",
-			url:"php/eliminarDatos.php",
+			url:"../php/eliminarDatos.php",
 			data:cadena,
 			success:function(r){
 				if(r==1){
-					$('#tabla').load('componentes/TablaUsuarios.php');
+					$('#tabla').load('../componentes/TablaUsuarios.php');
 					alertify.success("Cliente eliminado con exito!");
 				}else{
 					alertify.error("Fallo el servidor :(");
@@ -56,13 +56,13 @@ function actualizaDatos(){
 
 	$.ajax({
 		type:"POST",
-		url:"php/actualizaDatos.php",
+		url:"../php/actualizaDatos.php",
 		data:cadena,
 		success:function(r){
 			
 			if(r==1){
 				
-				$('#tabla').load('componentes/tablaUsuarios.php');
+				$('#tabla').load('../componentes/tablaUsuarios.php');
 				alertify.success("Empleado actualizado con exito :)");
 			}else{
 				alertify.error("Fallo el servidor :(");
@@ -84,12 +84,12 @@ function agregardatos(cedula,nombre,apellido1,apellido2,direc,telefono,contra,ro
 	
 	$.ajax({
 	  type:"POST",
-	  url:"php/agregarDatos.php",
+	  url:"../php/agregarDatos.php",
 	  data:cadena,
 	  success:function(r){
 		if(r==1){
-		  $('#tabla').load('componentes/tablaUsuarios.php');
-		  $('#buscador').load('componentes/buscadorUsuarios.php');
+		  $('#tabla').load('../componentes/tablaUsuarios.php');
+		  $('#buscador').load('../componentes/buscadorUsuarios.php');
 		  alertify.success("agregado con exito :)");
 		}else{
 		  alertify.error("Fallo el servidor :(");
