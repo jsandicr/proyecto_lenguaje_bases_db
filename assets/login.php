@@ -15,7 +15,7 @@
       oci_bind_by_name($stid, ":cursbv", $curs, -1, OCI_B_CURSOR);
       oci_execute($stid);
       oci_execute($curs);
-      $row = oci_fetch_array($curs, OCI_ASSOC+OCI_RETURN_NULLS);
+      $row = oci_fetch_array($curs);
       $f=$row['TBR_ID'];
 
       IF (($row = oci_fetch_array($curs, OCI_ASSOC+OCI_RETURN_NULLS)) != false) {
