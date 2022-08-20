@@ -1,3 +1,9 @@
+<?php
+    session_start();
+    $_SESSION
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,6 +16,7 @@
 <body>
     <navbar>
         <ul>
+
             <li>
                 <a href="#home">Inicio</a>
             </li>
@@ -22,6 +29,32 @@
             <li>
                 <a href="#ordenar">Ordenar express</a>
             </li>
+        <?php
+
+        if (!empty($_SESSION['rol'])) {
+          if ($_SESSION['rol'] != 1) {
+        ?>
+            <li><a href=".php">Administacion Usuarios</a></li>
+            <li><a href=".php">Administracion de Productos</a></li>
+            <li><a href=".php">Pedidos</a></li>
+          <?php
+          } else {
+
+          ?>
+            <li><a href="ordenar.php">Ordenar</a></li>
+          <?php
+          }
+        }
+        if (!empty($_SESSION['active'])) {
+          ?>
+          <li><a onclick="preguntarSiNoCerrarSesion()">Cerrar Sesión</a></li>
+        <?php
+        } else {
+        ?>
+          <li><a href="login.php">Iniciar Sesión</a></li>
+        <?php
+        }
+        ?>
         </ul>
     </navbar>
 </body>
