@@ -1,7 +1,59 @@
-<!-- Define que el documento esta bajo el estandar de HTML 5 -->
+<?php
+  require '../PHP/Conexion.php';
+  session_start();
+  $conn=Conexion();
+
+  $alert = '';
+  if (!empty($_POST)) {
+    if(!empty($_POST['usuario']) || !empty($_POST['password'])){
+      $user = $_POST['usuario'];
+      $pass = $_POST['password'];
+
+
+      $curs = oci_new_cursor($conn);
+      $stid = oci_parse($conn, "begin PKG_USUARIO.PR_VALIDA('$pass',$user,:cursbv); end;");
+      oci_bind_by_name($stid, ":cursbv", $curs, -1, OCI_B_CURSOR);
+      oci_execute($stid);
+      oci_execute($curs);
+
+
+      IF (($row = oci_fetch_array($curs, OCI_ASSOC+OCI_RETURN_NULLS)) != false) {
+        $_SESSION['active'] = true;
+        $_SESSION['id']=$row['TBU_ID'];
+        $_SESSION['rol']=$row['TBR_ID'];
+        if($row['TBR_ID']==1){
+          header('location: ordenar.php');
+        }else{
+          header('location: administracion.php');
+        }
+        
+      } else{
+        $alert='Usuario o contraseña incorrectos';
+      }
+    }
+    if(empty($_POST['id']) || empty($_POST['nombre']) || empty($_POST['ap1']) || empty($_POST['ap2'])  || empty($_POST['tel']) ||
+         empty($_POST['direcc']) || empty($_POST['contra'])){
+
+            $mensaje='Tiene que llenar todos los datos';
+         }else{
+          $id = $_POST['id'];
+          $nombre = $_POST['nombre'];
+          $ap1 = $_POST['ap1'];
+          $ap2 = $_POST['ap2'];
+          $direcc = $_POST['direcc'];
+          $tel = $_POST['tel'];
+          $contra = $_POST['contra'];
+          $stid = oci_parse($conn, "begin PKG_USUARIO.INSERTAR_USUARIO($id,'$nombre','$ap1', '$ap2', '$direcc', $tel, 1, '$contra'); end;");
+          oci_execute($stid);
+        }
+        $alert=$stid;
+  }
+
+	oci_close($conn);
+			 
+?>
 <!doctype html>
 
-<!-- Representa la raíz de un documento HTML o XHTML. Todos los demás elementos deben ser descendientes de este elemento. -->
 <html lang="es">
     
     <head>
@@ -22,7 +74,7 @@
             <script src="../librerias/bootstrap/js/bootstrap.js"></script>
             <script src="../librerias/alertifyjs/alertify.js"></script>
             <script src="../librerias/select2/js/select2.js"></script>
-        <!-- Link hacia el archivo de estilos css -->
+   
         <link rel="stylesheet" href="../styles/login.css">
     </head>
     
@@ -32,13 +84,13 @@
             
             <div id="contenedorcentrado">
                 <div id="login">
-                    <form id="loginform">
+                    <form id="loginform" method="post">
                         <label for="usuario">Usuario(#Cedula)</label>
                         <input id="usuario" type="text" name="usuario" placeholder="Usuario" required>
                         
                         <label for="password">Contraseña</label>
                         <input id="password" type="password" placeholder="Contraseña" name="password" required>
-                        
+                        <p><?php echo isset($alert) ? $alert : '';?></p>
                         <button type="submit" title="Ingresar" name="Ingresar">Inciar Sesión</button>
                     </form>
                     
@@ -49,8 +101,8 @@
                     </div>
                     <hr>
                     <div class="pie-form">
-                        <a href="#" data-toggle="modal" data-target="#modalPS" onclick="agregaformCita('<?php echo $datos ?>')">Olvide mi Contraseña</a>
-                        <a href="#" data-toggle="modal" data-target="#modalAgregar" onclick="agregaformCita('<?php echo $datos ?>')">Crear Cuenta</a>
+              
+                        <a href="#" data-toggle="modal" data-target="#modalAgregar")>Crear Cuenta</a>
                         <hr>
                         <a href="index.php" >« Volver</a>
                     </div>
@@ -58,29 +110,7 @@
             </div>
         </div>
 
-        <div class="modal fade" id="modalPS" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog modal-sm" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                  <h4 class="modal-title" id="myModalLabel">Recuperar Contraseña</h4>
-                </div>
-                <div class="modal-body">
-                        <input type="text" hidden="" id="" name="">
-                      <label>Numero de cedula</label>
-                      <input type="text" name="" id="" class="form-control input-sm">
-                      <label>Codigo de recuperacion</label>
-                      <input type="text" name="" id="" class="form-control input-sm">
-                      <label>Contraseña Nueva</label>
-                      <input type="text" name="" id="" class="form-control input-sm">
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-warning" id="actualizadatos" data-dismiss="modal">Enviar</button>
-                  
-                </div>
-              </div>
-            </div>
-          </div>
+      
 
           <div class="modal fade" id="modalAgregar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog modal-sm" role="document">
@@ -90,24 +120,27 @@
                   <h4 class="modal-title" id="myModalLabel">Crear Cuenta</h4>
                 </div>
                 <div class="modal-body">
-                      <input type="text" hidden="" id="" name="">
-                      <label>Numero de cedula</label>
-                      <input type="text" name="" id="" class="form-control input-sm">
-                      <label>Nombre</label>
-                      <input type="text" name="" id="" class="form-control input-sm">
-                      <label>Apelldio 1</label>
-                      <input type="text" name="" id="" class="form-control input-sm">
-                      <label>Apelldio 2</label>
-                      <input type="text" name="" id="" class="form-control input-sm">
-                      <label>Numero de Telefono</label>
-                      <input type="text" name="" id="" class="form-control input-sm">
-                      <label>Correo</label>
-                      <input type="text" name="" id="" class="form-control input-sm">
-                      <label>Dirrecion</label>
-                      <input type="text" name="" id="" class="form-control input-sm">
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-primary" id="actualizadatos" data-dismiss="modal">Crear</button>
+                  <form id="crearform" method="post">
+                        <input type="text" hidden="" id="" name="">
+                        <label>Numero de cedula</label>
+                        <input type="text" name="id" id="id" class="form-control input-sm">
+                        <label>Nombre</label>
+                        <input type="text" name="nombre" id="nombre" class="form-control input-sm">
+                        <label>Apellidio 1</label>
+                        <input type="text" name="ap1" id="ap1" class="form-control input-sm">
+                        <label>Apellidio 2</label>
+                        <input type="text" name="ap2" id="ap2" class="form-control input-sm">
+                        <label>Numero de Telefono</label>
+                        <input type="text" name="tel" id="tel" class="form-control input-sm">
+                        <label>Dirrecion</label>
+                        <input type="text" name="direcc" id="direcc" class="form-control input-sm">
+                        <label>Contraseña</label>
+                        <input type="password" name="contra" id="contra" class="form-control input-sm">
+                        <?php echo isset($mensaje) ? $mensaje : '' ?>
+                        <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" id="actualizadatos" >Crear</button>
+                        </div>
+                  </form>
                 </div>
               </div>
             </div>
