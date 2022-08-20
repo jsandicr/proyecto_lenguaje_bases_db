@@ -1,5 +1,5 @@
 function preguntarSiNo(id){
-	alertify.confirm('Eliminar Datos de cleinte', '¿Esta seguro de eliminar este  de cliente?', 
+	alertify.confirm('Eliminar Datos de usuario', '¿Esta seguro de eliminar este  usuario?', 
                 function(){ eliminarDatos(id) },	
                 function(){ alertify.error('Se cancelo')});
 }
@@ -15,7 +15,7 @@ function eliminarDatos(id){
 			success:function(r){
 				if(r==1){
 					$('#tabla').load('../componentes/TablaUsuarios.php');
-					alertify.success("Cliente eliminado con exito!");
+					alertify.success("Usuario eliminado con exito!");
 				}else{
 					alertify.error("Fallo el servidor :(");
 				}
@@ -63,7 +63,7 @@ function actualizaDatos(){
 			if(r==1){
 				
 				$('#tabla').load('../componentes/tablaUsuarios.php');
-				alertify.success("Empleado actualizado con exito :)");
+				alertify.success("Usuario actualizado con exito :)");
 			}else{
 				alertify.error("Fallo el servidor :(");
 			}
