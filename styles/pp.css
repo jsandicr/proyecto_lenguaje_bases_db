@@ -5,7 +5,7 @@
     --Light-brown: #E0C097;
 }
 body{
-    background-image: url("imagen.jpg");
+    background-image: url("../media/imagen.jpg");
     background-size: 100%;
     color: var(--Light-brown);
 }
