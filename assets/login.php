@@ -31,7 +31,7 @@
         }
         
       } else{
-        $alert='Usuario o contraseña incorrectos'.$f;
+        $alert='Usuario o contraseña incorrectos';
       }
     }
     if(empty($_POST['id']) || empty($_POST['nombre']) || empty($_POST['ap1']) || empty($_POST['ap2'])  || empty($_POST['tel']) ||
