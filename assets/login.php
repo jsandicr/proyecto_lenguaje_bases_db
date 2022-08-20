@@ -23,7 +23,7 @@
         $_SESSION['rol']=$row['TBR_ID'];
         if($row['TBR_ID']==1){
           header('location: ordenar.php');
-        }else{
+        }else if($row['TBR_ID']==22){
           header('location: administracion.php');
         }
         
@@ -46,7 +46,7 @@
           $stid = oci_parse($conn, "begin PKG_USUARIO.INSERTAR_USUARIO($id,'$nombre','$ap1', '$ap2', '$direcc', $tel, 1, '$contra'); end;");
           oci_execute($stid);
         }
-        $alert=$stid;
+
   }
 
 	oci_close($conn);
