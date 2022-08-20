@@ -15,17 +15,18 @@
       oci_bind_by_name($stid, ":cursbv", $curs, -1, OCI_B_CURSOR);
       oci_execute($stid);
       oci_execute($curs);
-
+      $row = oci_fetch_array($curs, OCI_ASSOC+OCI_RETURN_NULLS);
+      $f=$row['TBR_ID'];
 
       IF (($row = oci_fetch_array($curs, OCI_ASSOC+OCI_RETURN_NULLS)) != false) {
         $_SESSION['active'] = true;
         $_SESSION['id']=$row['TBU_ID'];
         $_SESSION['rol']=$row['TBR_ID'];
-        $f=$_SESSION['rol'];
-
-        if($row['TBR_ID']==22){
+      
+        
+        if($row['TBR_ID']==1){
           header('location: ordenar.php');
-        }else if($row['TBR_ID']==1){
+        }else if($row['TBR_ID']==22){
           header('location: administracion.php');
         }
         
