@@ -10,22 +10,9 @@
     <link rel="stylesheet" href="../styles/navbar.css">
 </head>
 <body>
-<navbar>
-    <ul>
-        <li>
-            <a href="index.php">Inicio</a>
-        </li>
-        <li>
-            <a href="index.php#about">Acerca de nosotros</a>
-        </li>
-        <li>
-            <a href="index.php#menu">Menu</a>
-        </li>
-        <li>
-            <a href="index.php#ordenar">Ordenar express</a>
-        </li>
-    </ul>
-  </navbar>
+    <?php
+        include('navbar.php');
+    ?>
     <h1 class="title">Ordenar Express</h1>
     <div class="title_sucursal">
         <p>Sucursal</p> 
