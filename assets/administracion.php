@@ -17,23 +17,9 @@
     <link rel="stylesheet" href="../styles/administracion.css">
 </head>
 <body>
-  <navbar>
-    <ul>
-        <li>
-            <a href="index.php">Inicio</a>
-        </li>
-        <li>
-            <a href="index.php#about">Acerca de nosotros</a>
-        </li>
-        <li>
-            <a href="index.php#menu">Menu</a>
-        </li>
-        <li>
-            <a href="index.php#ordenar">Ordenar express</a>
-        </li>
-    </ul>
-  </navbar>
-  <div class="main_container">
+    <?php
+        include('navbar.php');
+    ?>  <div class="main_container">
     <div class="home">
       <h2>Administracion de productos</h2>
       <p>Menu</p>
