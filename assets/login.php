@@ -21,6 +21,7 @@
         $_SESSION['active'] = true;
         $_SESSION['id']=$row['TBU_ID'];
         $_SESSION['rol']=$row['TBR_ID'];
+        $f=$_SESSION['rol'];
 
         if($row['TBR_ID']==1){
           header('location: ordenar.php');
@@ -29,7 +30,7 @@
         }
         
       } else{
-        $alert='Usuario o contraseña incorrectos'.$_SESSION['rol'];
+        $alert='Usuario o contraseña incorrectos'.$f;
       }
     }
     if(empty($_POST['id']) || empty($_POST['nombre']) || empty($_POST['ap1']) || empty($_POST['ap2'])  || empty($_POST['tel']) ||
