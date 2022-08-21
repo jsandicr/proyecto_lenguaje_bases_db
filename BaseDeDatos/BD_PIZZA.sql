@@ -191,3 +191,83 @@ CREATE OR REPLACE VW_USUARIOS ("TBU_ID", "TBU_NOMBRE", "TBU_APELLIDO1", "TBU_APE
 
 INSERT INTO TB_ROLES(TBR_NOMBRE)VALUES('Clientes');
 INSERT INTO TB_ROLES(TBR_NOMBRE)VALUES('Administradores');
+
+
+
+
+
+
+
+----------------------------------------------
+Package productos
+
+create or replace NONEDITIONABLE PACKAGE PKG_PRODUCTO
+    IS
+      
+
+        PROCEDURE INSERTAR_PRODUCTO(        TBP_ID IN TB_PRODUCTOS.TBP_ID%TYPE, 
+                                             TBP_NOMBRE IN TB_PRODUCTOS.TBP_NOMBRE%TYPE, 
+                                             TBP_DESCRIPCION IN TB_PRODUCTOS.TBP_DESCRIPCION%TYPE,
+                                             TBP_PRECIO IN TB_PRODUCTOS.TBP_PRECIO%TYPE,
+                                             TBTP_ID IN TB_PRODUCTOS.TBTP_ID%TYPE);
+                                             
+
+       PROCEDURE MODIFICAR_PRODUCTO(IDI IN TB_PRODUCTOS.TBP_ID%TYPE, 
+                                             NOMBRE IN TB_PRODUCTOS.TBP_NOMBRE%TYPE, 
+                                             DESCRIPCION IN TB_PRODUCTOS.TBP_DESCRIPCION%TYPE,
+                                             PRECIO IN TB_PRODUCTOS.TBP_PRECIO%TYPE);
+                                             
+        PROCEDURE ELIMINAR_PRODUCTO(IDI IN TB_PRODUCTOS.TBP_ID%TYPE);  
+
+
+
+    END;
+/
+create or replace NONEDITIONABLE PACKAGE BODY PKG_PRODUCTO
+    IS
+       
+
+        PROCEDURE INSERTAR_PRODUCTO(        TBP_ID IN TB_PRODUCTOS.TBP_ID%TYPE, 
+                                             TBP_NOMBRE IN TB_PRODUCTOS.TBP_NOMBRE%TYPE, 
+                                             TBP_DESCRIPCION IN TB_PRODUCTOS.TBP_DESCRIPCION%TYPE,
+                                             TBP_PRECIO IN TB_PRODUCTOS.TBP_PRECIO%TYPE,
+                                             TBTP_ID IN TB_PRODUCTOS.TBTP_ID%TYPE)
+                                       
+    IS
+        BEGIN
+            INSERT INTO TB_PRODUCTOS(TBP_ID, TBP_NOMBRE, TBP_DESCRIPCION, TBP_PRECIO, TBTP_ID)VALUES
+            (TBP_ID,TBP_NOMBRE,TBP_DESCRIPCION, TBP_PRECIO, TBTP_ID);
+
+
+
+        END;
+
+       PROCEDURE MODIFICAR_PRODUCTO(IDI IN TB_PRODUCTOS.TBP_ID%TYPE, 
+                                             NOMBRE IN TB_PRODUCTOS.TBP_NOMBRE%TYPE, 
+                                             DESCRIPCION IN TB_PRODUCTOS.TBP_DESCRIPCION%TYPE,
+                                             PRECIO IN TB_PRODUCTOS.TBP_PRECIO%TYPE)
+                         
+
+
+    IS
+        BEGIN
+            UPDATE TB_PRODUCTOS SET TBP_NOMBRE= NOMBRE,
+                                   TBP_DESCRIPCION= DESCRIPCION,
+                                   TBP_PRECIO= PRECIO
+                              
+
+            WHERE TBP_ID=IDI;
+
+        END;
+
+      PROCEDURE ELIMINAR_PRODUCTO(IDI IN TB_PRODUCTOS.TBP_ID%TYPE)                                         
+
+    IS
+        BEGIN
+
+            DELETE FROM TB_PRODUCTOS WHERE TBP_ID=IDI;
+        END;  
+END;
+
+
+
