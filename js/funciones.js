@@ -101,7 +101,7 @@ function agregardatos(cedula,nombre,apellido1,apellido2,direccion,telefono,contr
 	function cerrarSesion(){
 		window.location.href = "../assets/salir.php";
 	  
-	  }
+	}
 	function preguntarSiNoCerrarSesion(){
 		alertify.confirm('Cerrar Sesión', '¿Esta seguro de cerrar la sesión?', 
 			  function(){ cerrarSesion() }

@@ -18,16 +18,16 @@
         <ul>
 
             <li>
-                <a href="#home">Inicio</a>
+                <a href="./index.php#home">Inicio</a>
             </li>
             <li>
-                <a href="#about">Acerca de nosotros</a>
+                <a href="./index.php#about">Acerca de nosotros</a>
             </li>
             <li>
-                <a href="#menu">Menu</a>
+                <a href="./index.php#menu">Menu</a>
             </li>
             <li>
-                <a href="#ordenar">Ordenar express</a>
+                <a href="./index.php#ordenar">Ordenar express</a>
             </li>
         <?php
 
