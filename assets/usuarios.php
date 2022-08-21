@@ -2,6 +2,8 @@
 session_start();
 
 unset($_SESSION['consulta']);
+require '../PHP/Conexion.php';
+$conn=Conexion();
 
 ?>
 
@@ -95,9 +97,21 @@ unset($_SESSION['consulta']);
 
           <label>Contraseña</label>
           <input type="password" name="contra" id="contra" class="form-control input-sm">
-
+          
           <label>Rol</label>
-          <input type="text" name="rol" id="rol" class="form-control input-sm">
+          <select class="form-control input-smt" name="rol" id="rol">
+          <option selected="">Seleccione un Rol</option>
+          <?phP
+            $sql = 'SELECT PKG_USUARIO.PR_ROLES FROM DUAL';
+            $stid = oci_parse($conn, $sql);
+            oci_execute($stid);
+
+            while (oci_fetch($stid)) {
+                echo oci_result($stid, 'PR_ROLES');
+            }
+          ?>
+        </select>
+         
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-warning" id="agregar" data-dismiss="modal">Agregar</button>

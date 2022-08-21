@@ -12,7 +12,7 @@
 	$rol = $_POST['rol'];
 	$contra = $_POST['contra'];
 
-	$sql="begin PKG_USUARIO.INSERTAR_USUARIO($id, '$nombre', '$ap1', '$ap2', '$direc', $tel, 1, '$contra'); end;";
+	$sql="begin PKG_USUARIO.INSERTAR_USUARIO($id, '$nombre', '$ap1', '$ap2', '$direc', $tel, $rol, '$contra'); end;";
 	$result = oci_parse($conn, $sql);
 	echo oci_execute($result);
 
