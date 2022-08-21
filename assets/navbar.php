@@ -38,12 +38,7 @@
             <li><a href=".php">Administracion de Productos</a></li>
             <li><a href=".php">Pedidos</a></li>
           <?php
-          } else {
-
-          ?>
-            <li><a href="ordenar.php">Ordenar</a></li>
-          <?php
-          }
+          } 
         }
         if (!empty($_SESSION['active'])) {
           ?>
