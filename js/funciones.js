@@ -97,7 +97,7 @@ function agregardatos(cedula,nombre,apellido1,apellido2,direccion,telefono,contr
 	  }
 	});
 	function cerrarSesion(){
-		window.location.href = "../assets/salir.php";
+		window.location.href = "salir.php";
 	  
 	  }
 
