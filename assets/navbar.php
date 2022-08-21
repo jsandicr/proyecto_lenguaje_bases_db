@@ -34,7 +34,7 @@
         if (!empty($_SESSION['rol'])) {
           if ($_SESSION['rol'] != 1) {
         ?>
-            <li><a href=".php">Administacion Usuarios</a></li>
+            <li><a href="usuarios.php">Administacion Usuarios</a></li>
             <li><a href=".php">Administracion de Productos</a></li>
             <li><a href=".php">Pedidos</a></li>
           <?php
