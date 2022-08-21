@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 unset($_SESSION['consulta']);
 require '../PHP/Conexion.php';
@@ -93,7 +92,7 @@ $conn=Conexion();
           <input type="text" name="telefono" id="telefono" class="form-control input-sm">
 
           <label>Direccion</label>
-          <input type="text" name="direc" id="direc" class="form-control input-sm">
+          <input type="text" name="direccion" id="direccion" class="form-control input-sm">
 
           <label>Contraseña</label>
           <input type="password" name="contra" id="contra" class="form-control input-sm">
@@ -141,10 +140,10 @@ $conn=Conexion();
           apellido1=$('#apellido1').val();
           apellido2=$('#apellido2').val();
           telefono=$('#telefono').val();
-          direc=$('direc').val();
+          direccion=$('#direccion').val();
           contra=$('#contra').val();
           rol=$('#rol').val();
-            agregardatos(cedula,nombre,apellido1,apellido2,direc,telefono,contra,rol);
+            agregardatos(cedula,nombre,apellido1,apellido2,direccion,telefono,contra,rol);
         });
 
     $('#actualizadatos').click(function() {

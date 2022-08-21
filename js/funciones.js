@@ -71,14 +71,14 @@ function actualizaDatos(){
 	});
 
 }
-function agregardatos(cedula,nombre,apellido1,apellido2,direc,telefono,contra,rol){
+function agregardatos(cedula,nombre,apellido1,apellido2,direccion,telefono,contra,rol){
 
 	cadena="cedula=" + cedula + 
 		"&nombre=" + nombre +
 		"&apellido1=" + apellido1 + 
 		"&apellido2=" + apellido2 +
 		"&telefono=" + telefono +
-		"&direc=" + direc + 
+		"&direccion=" + direccion + 
 		"&contra=" + contra +
 		"&rol=" + rol;
 	
