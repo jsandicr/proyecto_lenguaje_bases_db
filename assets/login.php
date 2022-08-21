@@ -27,7 +27,7 @@
           header('location: ordenar.php');
         } 
         if($row['TBR_ID']==22){
-          header('location: administracion.php');
+          header('location: usuarios.php');
         }
         
       } else{
