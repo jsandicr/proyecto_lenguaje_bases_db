@@ -3,6 +3,11 @@ function preguntarSiNo(id){
                 function(){ eliminarDatos(id) },	
                 function(){ alertify.error('Se cancelo')});
 }
+function preguntarSiNoP(id){
+	alertify.confirm('Eliminar Datos de Producto', '¿Esta seguro de eliminar este  Producto?', 
+                function(){ eliminarDatosP(id) },	
+                function(){ alertify.error('Se cancelo')});
+}
 
 function eliminarDatos(id){
 
@@ -23,6 +28,26 @@ function eliminarDatos(id){
 		});
 }
 
+function eliminarDatosP(id){
+
+	cadena="id=" + id;
+
+		$.ajax({
+			type:"POST",
+			url:"../php/eliminarDatosP.php",
+			data:cadena,
+			success:function(r){
+				if(r==1){
+					$('#tabla').load('../componentes/tablaProductos.php');
+					alertify.success("Producto eliminado con exito!");
+				}else{
+					alertify.error("Fallo el servidor :(");
+				}
+			}
+		});
+}
+
+
 function agregaform(datos){
 
 	d=datos.split('||');
@@ -33,6 +58,18 @@ function agregaform(datos){
 	$('#ape2').val(d[3]);
 	$('#dire').val(d[4]);
     $('#tel').val(d[5]);
+	
+}
+function agregaformP(datos){
+
+	d=datos.split('||');
+
+	$('#id').val(d[0]);
+	$('#nombreP').val(d[1]);
+	$('#descriP').val(d[2]);
+	$('#precioP').val(d[3]);
+
+
 	
 }
 
@@ -71,6 +108,39 @@ function actualizaDatos(){
 	});
 
 }
+
+function actualizaProducto(){
+
+
+	id=$('#id').val();
+	nombre=$('#nombreP').val();
+	descri=$('#descriP').val();
+	precio=$('#precioP').val();
+	tipo=$('#id_tbtp').val();
+
+
+	cadena= "id=" + id +
+			"&nombreP=" + nombre + 
+			"&descriP=" + descri +
+			"&precioP=" + precio;
+			
+	$.ajax({
+		type:"POST",
+		url:"../php/actualizaDatosP.php",
+		data:cadena,
+		success:function(r){
+			
+			if(r==1){
+				
+				$('#tabla').load('../componentes/tablaProductos.php');
+				alertify.success("Producto actualizado con exito :)");
+			}else{
+				alertify.error("Fallo el servidor :(");
+			}
+		}
+	});
+
+}
 function agregardatos(cedula,nombre,apellido1,apellido2,direccion,telefono,contra,rol){
 
 	cadena="cedula=" + cedula + 
@@ -98,6 +168,32 @@ function agregardatos(cedula,nombre,apellido1,apellido2,direccion,telefono,contr
 	});
 	
 	}
+
+	function agregardatosP(nombrea, descriPa,precioPa,tppr) {
+
+		cadena="nombrea=" + nombrea + 
+			"&descriPa=" + descriPa +
+			"&precioPa=" + precioPa + 
+			"&tppr=" + tppr;
+		
+		$.ajax({
+		  type:"POST",
+		  url:"../php/agregarDatosP.php",
+		  data:cadena,
+		  success:function(r){
+			if(r==1){
+			  $('#tabla').load('../componentes/tablaProductos.php');
+			 
+			  alertify.success("agregado con exito :)");
+			}else{
+			  alertify.error("Fallo el servidor :(");
+			}
+		  }
+		});
+		
+		}
+
+		
 	function cerrarSesion(){
 		window.location.href = "../assets/salir.php";
 	  
@@ -107,4 +203,6 @@ function agregardatos(cedula,nombre,apellido1,apellido2,direccion,telefono,contr
 			  function(){ cerrarSesion() }
 					, function(){ alertify.error('Se cancelo')});
 	}
+
+
 	
