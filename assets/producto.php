@@ -73,7 +73,7 @@
         <div class="modal-body">
                                   
           <label>Nombre</label>
-          <input type="text" name="nombrea" id="nombrea" class="form-control input-sm">    --id? lo agarra de la base de dat--
+          <input type="text" name="nombrea" id="nombrea" class="form-control input-sm">  
 
           <label>Descripcion</label>
           <input type="text" name="descriPa" id="descriPa" class="form-control input-sm">
