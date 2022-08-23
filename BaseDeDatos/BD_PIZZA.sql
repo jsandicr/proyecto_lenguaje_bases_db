@@ -205,29 +205,32 @@ create or replace NONEDITIONABLE PACKAGE PKG_PRODUCTO
     IS
       
 
-        PROCEDURE INSERTAR_PRODUCTO(        TBP_ID IN TB_PRODUCTOS.TBP_ID%TYPE, 
+        PROCEDURE INSERTAR_PRODUCTO(        
                                              TBP_NOMBRE IN TB_PRODUCTOS.TBP_NOMBRE%TYPE, 
                                              TBP_DESCRIPCION IN TB_PRODUCTOS.TBP_DESCRIPCION%TYPE,
                                              TBP_PRECIO IN TB_PRODUCTOS.TBP_PRECIO%TYPE,
                                              TBTP_ID IN TB_PRODUCTOS.TBTP_ID%TYPE);
-                                             
+
 
        PROCEDURE MODIFICAR_PRODUCTO(IDI IN TB_PRODUCTOS.TBP_ID%TYPE, 
                                              NOMBRE IN TB_PRODUCTOS.TBP_NOMBRE%TYPE, 
                                              DESCRIPCION IN TB_PRODUCTOS.TBP_DESCRIPCION%TYPE,
                                              PRECIO IN TB_PRODUCTOS.TBP_PRECIO%TYPE);
-                                             
+
         PROCEDURE ELIMINAR_PRODUCTO(IDI IN TB_PRODUCTOS.TBP_ID%TYPE);  
+
+        FUNCTION TIPO_PRODUCTO RETURN VARCHAR2;
 
 
 
     END;
-/
+\
+
 create or replace NONEDITIONABLE PACKAGE BODY PKG_PRODUCTO
     IS
        
 
-        PROCEDURE INSERTAR_PRODUCTO(        TBP_ID IN TB_PRODUCTOS.TBP_ID%TYPE, 
+        PROCEDURE INSERTAR_PRODUCTO(        
                                              TBP_NOMBRE IN TB_PRODUCTOS.TBP_NOMBRE%TYPE, 
                                              TBP_DESCRIPCION IN TB_PRODUCTOS.TBP_DESCRIPCION%TYPE,
                                              TBP_PRECIO IN TB_PRODUCTOS.TBP_PRECIO%TYPE,
@@ -235,8 +238,8 @@ create or replace NONEDITIONABLE PACKAGE BODY PKG_PRODUCTO
                                        
     IS
         BEGIN
-            INSERT INTO TB_PRODUCTOS(TBP_ID, TBP_NOMBRE, TBP_DESCRIPCION, TBP_PRECIO, TBTP_ID)VALUES
-            (TBP_ID,TBP_NOMBRE,TBP_DESCRIPCION, TBP_PRECIO, TBTP_ID);
+            INSERT INTO TB_PRODUCTOS( TBP_NOMBRE, TBP_DESCRIPCION, TBP_PRECIO, TBTP_ID)VALUES
+            (TBP_NOMBRE,TBP_DESCRIPCION, TBP_PRECIO, TBTP_ID);
 
 
 
@@ -246,7 +249,7 @@ create or replace NONEDITIONABLE PACKAGE BODY PKG_PRODUCTO
                                              NOMBRE IN TB_PRODUCTOS.TBP_NOMBRE%TYPE, 
                                              DESCRIPCION IN TB_PRODUCTOS.TBP_DESCRIPCION%TYPE,
                                              PRECIO IN TB_PRODUCTOS.TBP_PRECIO%TYPE)
-                         
+
 
 
     IS
@@ -254,7 +257,7 @@ create or replace NONEDITIONABLE PACKAGE BODY PKG_PRODUCTO
             UPDATE TB_PRODUCTOS SET TBP_NOMBRE= NOMBRE,
                                    TBP_DESCRIPCION= DESCRIPCION,
                                    TBP_PRECIO= PRECIO
-                              
+
 
             WHERE TBP_ID=IDI;
 
@@ -267,7 +270,23 @@ create or replace NONEDITIONABLE PACKAGE BODY PKG_PRODUCTO
 
             DELETE FROM TB_PRODUCTOS WHERE TBP_ID=IDI;
         END;  
+
+
+ FUNCTION TIPO_PRODUCTO RETURN VARCHAR2
+ IS
+    TEXTO VARCHAR2(200);
+    CURSOR BOLSA IS SELECT * FROM TB_TIPO_PRODUCTO;
+    BOLSA_ITEM BOLSA%ROWTYPE;
+    BEGIN
+        OPEN BOLSA;
+        LOOP
+            FETCH BOLSA INTO BOLSA_ITEM;
+            EXIT WHEN BOLSA%NOTFOUND;
+                TEXTO:=TEXTO||'<option value="'||BOLSA_ITEM.TBTP_ID||'">'||BOLSA_ITEM.TBTP_NOMBRE||'</option>';
+            END LOOP;
+        CLOSE BOLSA;
+        RETURN TEXTO;
+    END; 
+
+
 END;
-
-
-
