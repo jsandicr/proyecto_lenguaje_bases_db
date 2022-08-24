@@ -117,6 +117,8 @@ create or replace NONEDITIONABLE PACKAGE PKG_USUARIO
         PROCEDURE ELIMINAR_USUARIO(IDI IN TB_USUARIOS.TBU_ID%TYPE);
 
         FUNCTION PR_ROLES RETURN VARCHAR2;
+	
+	FUNCTION NAVBAR(ROL IN INTEGER,SESION IN INTEGER) RETURN VARCHAR2;
 
     END;
 /
@@ -190,11 +192,48 @@ create or replace NONEDITIONABLE PACKAGE BODY PKG_USUARIO
         CLOSE BOLSA;
         RETURN TEXTO;
     END;
+    
+ FUNCTION NAVBAR(ROL IN INTEGER,SESION IN INTEGER) RETURN VARCHAR2
+ IS
+    HOME VARCHAR2(1000);
+    ROLAD INTEGER;
+    ROLCL INTEGER;
+    BEGIN
+        HOME:='  <li>
+                <a href="./index.php#home">Inicio</a>
+                </li>
+                <li>
+                <a href="./index.php#about">Acerca de nosotros</a>
+                </li>
+                <li>
+                <a href="./index.php#menu">Menu</a>
+                </li>
+                <li>
+                <a href="./index.php#ordenar">Ordenar express</a>
+                </li>';
+                
+              SELECT TBR_ID INTO ROLAD FROM TB_ROLES WHERE TBR_NOMBRE='Administradores';
+              SELECT TBR_ID INTO ROLCL FROM TB_ROLES WHERE TBR_NOMBRE='Clientes';
+                 
+              IF ROL=ROLAD THEN 
+              HOME:=HOME||'<li><a href="usuarios.php">Administacion Usuarios</a></li>
+                      <li><a href="producto.php">Administracion de Productos</a></li>
+                      <li><a href=".php">Pedidos</a></li>';
+              END IF;
+              
+              IF SESION=1 THEN
+              HOME:=HOME||'<li><a onclick="preguntarSiNoCerrarSesion()">Cerrar Sesion</a></li>';
+              ELSIF SESION !=1 THEN
+              HOME:=HOME||'<li><a href="login.php">Iniciar Sesion</a></li>';
+              END IF;
+              
+              RETURN HOME;
+    END;
 END;
 
-CREATE OR REPLACE VIEW VW_USUARIOS ("TBU_ID", "TBU_NOMBRE", "TBU_APELLIDO1", "TBU_APELLIDO2", "TBU_DIRRECION", "TBU_TELEFONO") AS 
-  SELECT TBU_ID,TBU_NOMBRE,TBU_APELLIDO1,TBU_APELLIDO2,TBU_DIRRECION,TBU_TELEFONO
-						from TB_USUARIOS;
+CREATE OR REPLACE VIEW VW_USUARIOS ("TBU_ID", "TBU_NOMBRE", "TBU_APELLIDO1", "TBU_APELLIDO2", "TBU_DIRRECION", "TBU_TELEFONO", "TBR_NOMBRE") AS 
+SELECT TBU_ID,TBU_NOMBRE,TBU_APELLIDO1,TBU_APELLIDO2,TBU_DIRRECION,TBU_TELEFONO, TBR_NOMBRE
+						from TB_USUARIOS U  INNER JOIN TB_ROLES R ON U.TBR_ID=R.TBR_ID;
 
 INSERT INTO TB_ROLES(TBR_NOMBRE)VALUES('Clientes');
 INSERT INTO TB_ROLES(TBR_NOMBRE)VALUES('Administradores');
