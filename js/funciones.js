@@ -181,7 +181,7 @@ function agregardatos(cedula,nombre,apellido1,apellido2,direccion,telefono,contr
 		  url:"../php/agregarDatosP.php",
 		  data:cadena,
 		  success:function(r){
-			if(r==1){
+			if(r=!0){
 			  $('#tabla').load('../componentes/tablaProductos.php');
 			 
 			  alertify.success("agregado con exito :)");

@@ -1,9 +1,5 @@
 <?php
-
-unset($_SESSION['consulta']);
-require '../PHP/Conexion.php';
-$conn=Conexion();
-
+ 
 ?>
 
 <!DOCTYPE html>
@@ -11,6 +7,7 @@ $conn=Conexion();
 
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <
   <title>Administracion de Usuarios</title>
   <link rel="stylesheet" type="text/css" href="../librerias/bootstrap/css/bootstrap.css">
   <link rel="stylesheet" type="text/css" href="../librerias/alertifyjs/css/alertify.css">

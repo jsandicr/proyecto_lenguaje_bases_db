@@ -1,6 +1,15 @@
 <?php
-    session_start();
-    $_SESSION
+      require '../PHP/Conexion.php';
+      session_start();
+      $conn=Conexion();
+      $sesion=0;
+      $rol=0;
+      
+      if(!empty($_SESSION['active'])){
+        $sesion=1;
+        $rol=$_SESSION['rol'];
+      }
+
 ?>
 
 
@@ -15,42 +24,17 @@
 </head>
 <body>
     <navbar>
-        <ul>
+    <ul>
+    <?php 
+         $sql = "SELECT PKG_USUARIO.NAVBAR($rol,$sesion)AS HOME FROM DUAL";
+         $stid = oci_parse($conn, $sql);
+         oci_execute($stid);
 
-            <li>
-                <a href="./index.php#home">Inicio</a>
-            </li>
-            <li>
-                <a href="./index.php#about">Acerca de nosotros</a>
-            </li>
-            <li>
-                <a href="./index.php#menu">Menu</a>
-            </li>
-            <li>
-                <a href="./index.php#ordenar">Ordenar express</a>
-            </li>
-        <?php
-
-        if (!empty($_SESSION['rol'])) {
-          if ($_SESSION['rol'] != 1) {
-        ?>
-            <li><a href="usuarios.php">Administacion Usuarios</a></li>
-            <li><a href="producto.php">Administracion de Productos</a></li>
-            <li><a href=".php">Pedidos</a></li>
-          <?php
-          } 
-        }
-        if (!empty($_SESSION['active'])) {
-          ?>
-          <li><a onclick="preguntarSiNoCerrarSesion()">Cerrar Sesión</a></li>
-        <?php
-        } else {
-        ?>
-          <li><a href="login.php">Iniciar Sesión</a></li>
-        <?php
-        }
-        ?>
-        </ul>
+         while (oci_fetch($stid)) {
+             echo oci_result($stid, 'HOME');
+         }
+    ?>
+     </ul>
     </navbar>
 </body>
 </html>

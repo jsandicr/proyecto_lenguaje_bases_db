@@ -21,6 +21,7 @@
 				<td>Apellido 2</td>
 				<td>Dirrecion</td>
 				<td>Telefono</td>
+				<td>Rol</td>
 				<td>Editar</td>
 				<td>Eliminar</td>
 			</tr>
@@ -56,6 +57,7 @@
 				<td><?php echo $ver[3] ?></td>
 				<td><?php echo $ver[4] ?></td>
 				<td><?php echo $ver[5] ?></td>
+				<td><?php echo $ver[6] ?></td>
 				<td>
 					<button class="btn btn-warning glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modalEdicion" onclick="agregaform('<?php echo $datos ?>')">
 						

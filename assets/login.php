@@ -18,7 +18,7 @@
     
 
       if (($row = oci_fetch_array($curs, OCI_ASSOC+OCI_RETURN_NULLS)) != false) {
-        $_SESSION['active'] = true;
+        $_SESSION['active'] = TRUE;
         $_SESSION['id']=$row['TBU_ID'];
         $_SESSION['rol']=$row['TBR_ID'];
       

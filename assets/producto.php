@@ -1,6 +1,5 @@
 <?php 
-   require '../PHP/Conexion.php';
-  $conn=Conexion();
+
 ?>
 
 <!DOCTYPE html>
@@ -8,6 +7,7 @@
 
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <br><br><br>
   <title>Administracion de Productos</title>
   <link rel="stylesheet" type="text/css" href="../librerias/bootstrap/css/bootstrap.css">
   <link rel="stylesheet" type="text/css" href="../librerias/alertifyjs/css/alertify.css">
