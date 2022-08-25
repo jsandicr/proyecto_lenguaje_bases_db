@@ -26,7 +26,7 @@
         if($row['TBR_ID']==1){
           header('location: ordenar.php');
         } 
-        if($row['TBR_ID']==22){
+        if($row['TBR_ID']==2){
           header('location: usuarios.php');
         }
         

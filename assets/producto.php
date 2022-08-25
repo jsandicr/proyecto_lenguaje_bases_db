@@ -92,7 +92,21 @@
                 echo oci_result($stid, 'TIPO_PRODUCTO');
             }
           ?>
-        </select>
+          </select>
+
+          <label>Tamaño</label>
+          <select class="form-control input-smt" name="tptr" id="tptr">
+          <option selected="">Seleccione un tamaño</option>
+          <?phP
+            $sql = 'SELECT PKG_PRODUCTO.TIPO_TAMANO FROM DUAL';
+            $stid = oci_parse($conn, $sql);
+            oci_execute($stid);
+            while (oci_fetch($stid)) {
+                echo oci_result($stid, 'TIPO_TAMANO');
+            }
+          ?>
+          </select>
+          
 
         <div class="modal-footer">
           <button type="button" class="btn btn-warning" id="agregar" data-dismiss="modal">Agregar</button>
@@ -118,13 +132,13 @@
 
     $('#agregar').click(function(){
   
-          nombrea=$('#nombrea').val();
-          descriPa=$('#descriPa').val();
-          precioPa=$('#precioPa').val();
-          
-          tppr=$('#tppr').val();
-            agregardatosP(nombrea, descriPa,precioPa,tppr);
-        });
+  nombrea=$('#nombrea').val();
+  descriPa=$('#descriPa').val();
+  precioPa=$('#precioPa').val();
+  tppr=$('#tppr').val();
+  tptr=$('#tptr').val();
+    agregardatosP(nombrea, descriPa,precioPa,tppr,tptr);
+});
 
     $('#actualizaProducto').click(function() {
       actualizaProducto();

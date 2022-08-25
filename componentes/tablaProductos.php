@@ -20,6 +20,7 @@
 				<td>Descripcion</td>
 				<td>Precio</td>
 				<td>Tipo</td>
+				<td>Tamaño</td>
 				<td>Editar</td>
 				<td>Eliminar</td>
 			</tr>
@@ -45,7 +46,8 @@
 						   $ver[1]."||".
 						   $ver[2]."||".
 						   $ver[3]."||".
-						   $ver[4];
+						   $ver[4]."||".
+						   $ver[5];
 			 ?>
 
 			<tr>
@@ -53,6 +55,7 @@
 				<td><?php echo $ver[2] ?></td>
 				<td><?php echo "$". $ver[3] ?></td>
 				<td><?php echo $ver[4] ?></td>
+				<td><?php echo $ver[5] ?></td>
 				<td>
 					<button class="btn btn-warning glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modalEdicion" onclick="agregaformP('<?php echo $datos ?>')">
 						

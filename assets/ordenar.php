@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../styles/index.css">
     <link rel="stylesheet" href="../styles/ordenar.css">
     <link rel="stylesheet" href="../styles/navbar.css">
+    <script src="../js/funciones.js"></script>
 </head>
 <body>
     <?php

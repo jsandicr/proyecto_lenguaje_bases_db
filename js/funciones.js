@@ -169,12 +169,13 @@ function agregardatos(cedula,nombre,apellido1,apellido2,direccion,telefono,contr
 	
 	}
 
-	function agregardatosP(nombrea, descriPa,precioPa,tppr) {
+	function agregardatosP(nombrea, descriPa,precioPa,tppr,tptr) {
 
 		cadena="nombrea=" + nombrea + 
 			"&descriPa=" + descriPa +
 			"&precioPa=" + precioPa + 
-			"&tppr=" + tppr;
+			"&tppr=" + tppr +
+			"&tptr=" + tptr;
 		
 		$.ajax({
 		  type:"POST",
@@ -203,6 +204,3 @@ function agregardatos(cedula,nombre,apellido1,apellido2,direccion,telefono,contr
 			  function(){ cerrarSesion() }
 					, function(){ alertify.error('Se cancelo')});
 	}
-
-
-	
