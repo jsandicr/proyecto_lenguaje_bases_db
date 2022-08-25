@@ -10,6 +10,10 @@ body{
     color: var(--Light-brown);
 }
 
+h3{
+    position: absolute;
+    color:var(--Light-brown);
+}
 table {
     font-size: 14px;
     margin: 45px;

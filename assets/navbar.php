@@ -34,8 +34,7 @@
     <title>Document</title>
 </head>
 <body>
-<br><br><br>
-    <h3>
+    <h3 style="font-size:17px;" >
     <?php 
 
 
@@ -47,7 +46,6 @@
              echo oci_result($stid, 'NOMBRE');
          }
     ?>
-
     </h3>
     <navbar>
     <ul>
@@ -62,5 +60,6 @@
     ?>
      </ul>
     </navbar>
+    
 </body>
 </html>

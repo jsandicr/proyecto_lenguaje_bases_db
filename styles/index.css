@@ -73,7 +73,11 @@ h1{
     font-style: italic;
 }
 
-
+h3{
+    position: absolute;
+    color:var(--Light-brown);
+    z-index: 5;
+}
 .menu h2{
     text-align: center;
     padding-top: 100px;

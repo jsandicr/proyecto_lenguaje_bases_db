@@ -63,3 +63,19 @@ h1{
 .opcion img{
     width: 100px;
 }
+
+.ifelsediv {
+ 
+    padding: 3px;
+     
+    border: solid 1px #B85C38;
+     
+    outline: 0;
+     
+    background: -webkit-gradient(linear, left top, left 25, from(#B85C38), color-stop(4%, #B85C38), to(#B85C38));
+     
+    background: -moz-linear-gradient(top, #B85C38, #B85C38 1px, #B85C38 25px);
+     
+    width:150px;
+     
+    }

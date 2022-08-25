@@ -9,6 +9,12 @@ function preguntarSiNoP(id){
                 function(){ alertify.error('Se cancelo')});
 }
 
+function preguntarSiNoPedidos(id){
+	alertify.confirm('Eliminar Datos de Pedido', '¿Esta seguro de eliminar este pedido?', 
+                function(){ eliminarPedidos(id) },	
+                function(){ alertify.error('Se cancelo')});
+}
+
 function eliminarDatos(id){
 
 	cadena="id=" + id;
@@ -47,6 +53,24 @@ function eliminarDatosP(id){
 		});
 }
 
+function eliminarPedidos(id){
+
+	cadena="id=" + id;
+
+		$.ajax({
+			type:"POST",
+			url:"../php/eliminarPedidos.php",
+			data:cadena,
+			success:function(r){
+				if(r==1){
+					$('#tabla').load('../componentes/TablaPedidos.php');
+					alertify.success("Pedido eliminado con exito!");
+				}else{
+					alertify.error("Fallo el servidor :(");
+				}
+			}
+		});
+}
 
 function agregaform(datos){
 
@@ -193,7 +217,28 @@ function agregardatos(cedula,nombre,apellido1,apellido2,direccion,telefono,contr
 		});
 		
 		}
+		
+		function agregarPedidos(envio,sucursal,total){
 
+			cadena="envio=" + envio + 
+				"&sucursal=" + sucursal +
+				"&total=" + total;
+			
+			$.ajax({
+			  type:"POST",
+			  url:"../php/agregarPedidos.php",
+			  data:cadena,
+			  success:function(r){
+				if(r==1){
+				  $('#tabla').load('../componentes/tablaPedidos.php');
+				  alertify.success("agregado con exito :)");
+				}else{
+				  alertify.error("Fallo el insert :(");
+				}
+			  }
+			});
+			
+			}
 		
 	function cerrarSesion(){
 		window.location.href = "../assets/salir.php";

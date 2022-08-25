@@ -1,13 +1,9 @@
-<?php 
-
-?>
 
 <!DOCTYPE html>
 <html>
 
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <br><br><br>
   <title>Administracion de Productos</title>
   <link rel="stylesheet" type="text/css" href="../librerias/bootstrap/css/bootstrap.css">
   <link rel="stylesheet" type="text/css" href="../librerias/alertifyjs/css/alertify.css">
@@ -27,8 +23,7 @@
 <?php
         include('navbar.php');
     ?>
-    <br><br>
-           
+           <br><br><br>
   <div class="container">
     <div id="buscador"></div>
     <div id="tabla"></div>

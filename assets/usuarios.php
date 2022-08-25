@@ -26,7 +26,7 @@
 <?php
         include('navbar.php');
     ?>
-    <br><br>
+    <br><br><br>
            
   <div class="container">
     <div id="tabla"></div>
